@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div style="text-align:center">
+        <h1>
+          Welcome to {{ title }}!
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4>Please Choose Date</h4>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Input & change events" (dateChange)="addEvent('input', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <h4>Please Choose Website</h4>
+      <mat-form-field>
+        <mat-label>Website</mat-label>
+        <mat-select (selectionChange)="changeClient($event.value)">
+          <mat-option *ngFor="let item of allWebsites" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <h4>Press button to get average prices</h4>
+      <button mat-raised-button color="primary" (click)="get_average_prices()">Send</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
